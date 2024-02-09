@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: gunicorn stoplight.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - sqlite_data:/app/data  # Mount to a directory
+    ports:
+      - "8000:8000"
+
+volumes:
+  sqlite_data:
