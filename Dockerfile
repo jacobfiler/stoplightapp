@@ -30,6 +30,8 @@ COPY requirements.txt /app/
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN pip3 install mysqlclient 
 
+RUN python manage.py collectstatic --noinput
+
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
