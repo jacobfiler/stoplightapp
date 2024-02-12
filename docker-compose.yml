@@ -11,12 +11,6 @@ services:
       - "8000:8000"
     env_file:
       - .env  # Load environment variables from .env file
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_NAME=your_database_name
-      - DATABASE_USER=your_database_user
-      - DATABASE_PASSWORD=your_database_password
-      - DATABASE_PORT=your_database_port
 
 volumes:
   static_volume:  # This volume is used for Django's static files
