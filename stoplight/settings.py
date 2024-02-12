@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['104.131.75.71', 'octopus-app-7kkc5.ondigitalocean.app', 'localhost']
 
+CSRF_TRUSTED_ORIGINS = ['https://octopus-app-7kkc5.ondigitalocean.app']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
