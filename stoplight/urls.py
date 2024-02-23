@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('reform/new/', views.ReformCreate.as_view(), name='reform_create'),
     path('reform/<int:pk>/update/', views.ReformUpdate.as_view(), name='reform_update'),
+    path('states/<str:state_name>/', views.StateReforms, name='state_reforms'),
 ]

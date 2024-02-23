@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .status-red { background-color: #ffcccc; }
+    .status-yellow { background-color: #ffffcc; }
+    .status-green { background-color: #ccffcc; }
+    .status-blue { background-color: #cceeff; }
+    .status-black { background-color: #cccccc; }
+    .status-null { background-color: #f2f2f2; }
+    .header-row { background-color: #343a40; color: #ffffff; }
+</style>
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Reform Statuses for {{ state.name }}</h1>
+    <div class="row header-row mb-2 px-3 py-2">
+        <div class="col-md-1">SLC ID</div>
+        <div class="col">Reform Name</div>
+        <div class="col">Reform Area</div>
+        <div class="col-md-3">Status</div>
+    </div>
+    {% for reform_status in reform_statuses %}
+    <div class="row mb-1 px-3 py-2 {{ reform_status.get_status_display|lower }}">
+        <div class="col-md-1">{{ reform_status.reform.slcid }}</div>
+        <div class="col">{{ reform_status.reform.name }}</div>
+        <div class="col">{{ reform_status.reform.reform_area.name }}</div>
+        <div class="col-md-3">{{ reform_status.get_status_display }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
