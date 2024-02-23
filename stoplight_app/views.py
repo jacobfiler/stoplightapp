@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from .models import Reform
+from .models import Reform, State, ReformStatus
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Reform
 
@@ -25,5 +25,15 @@ class ReformUpdate(UpdateView):
     template_name = 'stoplight_app/reform_form.html'
     succuss_url = reverse_lazy('home')
 
+def StateReforms(request, state_name):
+    # Fetch the State object by name
+    state = get_object_or_404(State, name=state_name)
+    # Fetch all ReformStatus objects for the given state
+    reform_statuses = ReformStatus.objects.filter(state=state).select_related('reform', 'state').order_by('reform__name')
+    context = {
+        'reform_statuses': reform_statuses,
+        'state': state,
+    }
+    return render(request, 'stoplight_app/state_reforms.html', context)
     
 
