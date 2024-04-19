@@ -5,3 +5,5 @@ gunicorn>=20.0.4
 python-dotenv==1.0.1
 mysqlclient==2.2.4
 whitenoise
+djangorestframework
+django-extensions
