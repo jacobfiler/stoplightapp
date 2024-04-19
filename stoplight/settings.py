@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stoplight_app', 
+    'rest_framework',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
