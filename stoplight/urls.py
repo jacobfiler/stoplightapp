@@ -15,12 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from stoplight_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('reform/new/', views.ReformCreate.as_view(), name='reform_create'),
-    path('reform/<int:pk>/update/', views.ReformUpdate.as_view(), name='reform_update'),
+    path('states/<str:state_name>/', views.StateReforms, name='state_reforms'),
+    path('api/reforms/', views.reform_list),
+    path('api/reform_status/<int:pk>/', views.reform_status_detail),
+    path('api/reform_area/', views.reform_area_list),
+    path('api/states/', views.state_list),
+    path('oauth2/', include('django_auth_adfs.urls')),
+
+    
 ]

@@ -7,10 +7,10 @@ class ReformArea(models.Model):
         return self.name
 
 class Reform(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    slcid = models.CharField(max_length=10, unique=True)
-    criteria = models.TextField()
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)  # Now allows blank and null values
+    slcid = models.CharField(max_length=10, primary_key=True)
+    criteria = models.TextField(blank=True, null=True)  # Now allows blank and null values
     reform_area = models.ForeignKey(ReformArea, on_delete=models.CASCADE, related_name='reforms')
 
     def __str__(self):

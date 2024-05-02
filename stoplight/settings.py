@@ -42,22 +42,50 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stoplight_app', 
+    'rest_framework',
+    'django_extensions',
+    'django_auth_adfs',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
+
+
+AUTHENTICATION_BACKENDS = [
+    'django_auth_adfs.backend.AdfsAuthCodeBackend',
+    # Include Django ModelBackend if you use Django's user database.
+    'django.contrib.auth.backends.ModelBackend',
+]
+AUTH_ADFS = {
+    "CLIENT_ID": os.getenv('application_client_id'),
+    "CLIENT_SECRET": os.getenv('client_secret'),
+    "TENANT_ID": os.getenv('tenet_id'),
+    "RELYING_PARTY_ID": os.getenv('application_client_id'),
+    "AUDIENCE": os.getenv('application_client_id'),
+    "CLAIM_MAPPING": {"first_name": "given_name", "last_name": "family_name", "email": "email"},
+}
+
+LOGIN_REDIRECT_URL = '/'  # Where to redirect after a successful login
+LOGOUT_REDIRECT_URL = '/'  # Where to redirect after a logout
+LOGIN_URL = 'django_auth_adfs:login'
+LOGOUT_URL = 'django_auth_adfs:logout'
+
+# Correct REDIRECT_URI placement
+REDIRECT_URI = ""
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 ROOT_URLCONF = 'stoplight.urls'
 
@@ -131,7 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
