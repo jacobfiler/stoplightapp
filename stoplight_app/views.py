@@ -7,7 +7,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import ReformSerializer, StateSerializer, ReformStatusSerializer, ReformAreaSerializer
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def home(request):
     # Fetch all Reform objects
     reforms = Reform.objects.all().order_by('slcid', 'name')
@@ -17,18 +20,7 @@ def home(request):
     return render(request, 'stoplight_app/home.html', context)
 
 
-class ReformCreate(CreateView):
-    model = Reform
-    fields = ['name', 'description', 'slcid', 'criteria', 'reform_area']
-    template_name = 'stoplight_app/reform_form.html'
-    succuss_url = reverse_lazy('home')
-
-class ReformUpdate(UpdateView):
-    model = Reform
-    fields = ['name', 'description', 'slcid', 'criteria', 'reform_area']
-    template_name = 'stoplight_app/reform_form.html'
-    succuss_url = reverse_lazy('home')
-
+@login_required
 def StateReforms(request, state_name):
     # Fetch the State object by name
     state = get_object_or_404(State, name=state_name)
@@ -73,22 +65,36 @@ def reform_status_detail(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'POST'])
-def reform_area_list(request):
+@api_view(['GET', 'POST', 'PUT'])
+def reform_status_detail(request, pk=None):
     if request.method == 'GET':
-        reform_areas = ReformArea.objects.all()
-        serializer = ReformAreaSerializer(reform_areas, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = ReformAreaSerializer(data=request.data)
+        try:
+            reform_status = ReformStatus.objects.get(pk=pk)
+            serializer = ReformStatusSerializer(reform_status)
+            return Response(serializer.data)
+        except ReformStatus.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    elif request.method in ['POST', 'PUT']:
+        data = request.data
+        if pk:
+            try:
+                reform_status = ReformStatus.objects.get(pk=pk)
+                serializer = ReformStatusSerializer(reform_status, data=data)
+            except ReformStatus.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+        else:
+            serializer = ReformStatusSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED if request.method == 'POST' else status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 @api_view(['GET'])
-def reform_area_detail(request, pk):
+def reform_area_list(request, pk):
     try:
         reform_area = ReformArea.objects.get(pk=pk)
     except ReformArea.DoesNotExist:
@@ -97,3 +103,9 @@ def reform_area_detail(request, pk):
     if request.method == 'GET':
         serializer = ReformAreaSerializer(reform_area)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def state_list(request):
+    states = State.objects.all()
+    serializer = StateSerializer(states, many=True)
+    return Response(serializer.data)

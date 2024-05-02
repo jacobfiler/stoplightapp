@@ -11,24 +11,31 @@
     .header-row { background-color: #343a40; color: #ffffff; }
 </style>
 
-<div class="container mt-5">
-    <h1 class="mb-4 text-center">Stoplight Chart</h1>
-    <div class="row header-row mb-2 px-3 py-2">
-        <div class="col-md-1">SLC ID</div>
-        <div class="col">Reform Name</div>
-        <div class="col">Reform Area</div>
-        <div class="col-md-3">Description</div>
-        <div class="col-md-3">Criteria</div>
-    </div>
-    {% for reform in reforms %}
-    <div class="row mb-1 px-3 py-2">
-        <div class="col-md-1">{{ reform.slcid }}</div>
-        <div class="col">{{ reform.name }}</div>
-        <div class="col">{{ reform.reform_area.name }}</div> <!-- Updated for clarity -->
-        <div class="col-md-3">{{ reform.description | truncatewords:20 }}</div> <!-- Consider truncation for length -->
-        <div class="col-md-3"> {{ reform.criteria }}</div>
-    </div>
-    {% endfor %}
-</div>
+<h2>Stoplight Chart</h2>
+
+
+<table id="myTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>SLC ID</th>
+            <th>Reform Name</th>
+            <th>Reform Area</th>
+            <th>Description</th>
+            <th>Criteria</th>
+        </tr>   
+    </thead>
+    <tbody>
+        {% for reform in reforms %}
+        <tr class="status-{{ reform.status }}">
+            <td>{{ reform.slcid }}</td>
+            <td>{{ reform.name }}</td>
+            <td>{{ reform.reform_area.name }}</td> <!-- Updated for clarity -->
+            <td>{{ reform.description | truncatewords:20 }}</td> <!-- Consider truncation for length -->
+            <td>{{ reform.criteria }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
 
