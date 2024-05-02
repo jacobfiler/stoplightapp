@@ -7,3 +7,4 @@ mysqlclient==2.2.4
 whitenoise
 djangorestframework
 django-extensions
+django-auth-adfs

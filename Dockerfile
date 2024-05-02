@@ -21,8 +21,10 @@ RUN apt-get update && apt-get install -y \
 COPY . /app/
 
 # Install any needed packages specified in requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt \
-    && pip3 install mysqlclient 
+RUN pip3 install --no-cache-dir -r requirements.txt 
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
