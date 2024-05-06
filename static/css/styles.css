@@ -5,3 +5,8 @@ body {
 .red { background-color: #D12123 !important; }
 .yellow { background-color: #F9C213 !important}
 .green { background-color: #9DBF2B !important}
+
+.navbar { 
+    background-color: #1EBDFF;
+    color: white;
+ }

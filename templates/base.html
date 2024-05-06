@@ -38,13 +38,39 @@
 
    
   </head>
-
   <body>
-    <header>
-      <!-- Site-wide navigation here -->
-    </header>
-
-    <main class="container">{% block content %}{% endblock %}</main>
+    <header >
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <!-- Logo on the left -->
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'img/FGA-Simple-Logo-172x80.png' %}" alt="Logo" style="height: 30px;">
+          </a>
+          
+          <!-- Toggler for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <!-- Navbar items -->
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown" style="padding-right: 3em;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  States
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% for state in states %}
+                  <li><a class="dropdown-item" href="{% url 'state_reforms' state.name %}">{{ state.name }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>    
+    <main class="container py-4">{% block content %}{% endblock %}</main>
 
     <footer>
       <!-- Site-wide footer here -->
