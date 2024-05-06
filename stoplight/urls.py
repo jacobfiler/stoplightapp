@@ -22,10 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('states/<str:state_name>/', views.StateReforms, name='state_reforms'),
-    path('api/reforms/', views.reform_list),
-    path('api/reform_status/<int:pk>/', views.reform_status_detail),
-    path('api/reform_area/', views.reform_area_list),
-    path('api/states/', views.state_list),
+    path('reform_detail/<str:slcid>/', views.reform_detail, name='reform_detail'),
     path('oauth2/', include('django_auth_adfs.urls')),
 
     

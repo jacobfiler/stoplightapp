@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Reform Details{% endblock %}
+
+{% block content %}
+<div class="mt-4">
+    <div class="row">
+        <h2>{{ reform.name }}</h2>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Reform Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-decoration-underline"><strong>{{ reform.slcid }}</strong></h5>
+                    <p class="card-text"><strong>Description:</strong> {{ reform.description|default:"No Description Provided" }}</p>
+                    <p class="card-text"><strong>Criteria:</strong> {{ reform.criteria|default:"No Criteria Provided" }}</p>
+                    <p class="card-text"><strong>Reform Area:</strong> {{ reform.reform_area.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

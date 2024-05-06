@@ -27,7 +27,7 @@
     <tbody>
         {% for reform in reforms %}
         <tr class="status-{{ reform.status }}">
-            <td>{{ reform.slcid }}</td>
+            <td><a href="{% url 'reform_detail' slcid=reform.slcid %}">{{ reform.slcid }}</a></td>
             <td>{{ reform.name }}</td>
             <td>{{ reform.reform_area.name }}</td> <!-- Updated for clarity -->
             <td>{{ reform.description | truncatewords:20 }}</td> <!-- Consider truncation for length -->
