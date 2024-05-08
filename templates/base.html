@@ -34,33 +34,78 @@
 
     <!-- custom scripts -->
     <script src="{% static 'js/scripts.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/styles.css' %}"
+      type="text/css"
+    />
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #1EBDFF!important;">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-light"
+        style="background-color: #1ebdff !important"
+      >
         <div class="container-fluid">
           <!-- Logo on the left -->
           <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'img/FGA-Simple-Logo-172x80.png' %}" alt="Logo">
+            <img
+              src="{% static 'img/FGA-Simple-Logo-172x80.png' %}"
+              alt="Logo"
+            />
             <h3>Stoplight</h3>
           </a>
-          
+
           <!-- Toggler for mobile view -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-          
+
           <!-- Navbar items -->
-          <div class="collapse navbar-collapse justify-content-end" style="padding-right:5em;" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            style="padding-right: 5em"
+            id="navbarNavDropdown"
+          >
+            <ul class="navbar-nav" style="color: white">
+              {% if request.user.is_authenticated and request.user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}"
+                  >Admin Panel</a
+                >
+              </li>
+              {% endif %}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   States
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
                   {% for state in states %}
-                  <li><a class="dropdown-item" href="{% url 'state_reforms' state.name %}">{{ state.name }}</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="{% url 'state_reforms' state.name %}"
+                      >{{ state.name }}</a
+                    >
+                  </li>
                   {% endfor %}
                 </ul>
               </li>
@@ -68,7 +113,7 @@
           </div>
         </div>
       </nav>
-    </header> 
+    </header>
     <main class="container py-4">{% block content %}{% endblock %}</main>
 
     <footer>
