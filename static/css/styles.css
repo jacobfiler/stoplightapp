@@ -25,3 +25,7 @@ body {
     margin-bottom: 0; /* Removes default margin from h3 */
     color: white; /* Ensures the title is white */
 }
+
+.nav-link {
+    color: white;
+}
