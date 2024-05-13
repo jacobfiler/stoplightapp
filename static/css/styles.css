@@ -17,7 +17,7 @@ body {
 }
 
 .navbar-brand img {
-    height: 30px; /* Adjust based on your preference */
+    height: 60px; /* Adjust based on your preference */
 }
 
 .navbar-brand h3 {
@@ -29,5 +29,5 @@ body {
     color: white;
 }
 .header-bg {
-    background-color: #1ebdff !important;
+    background-color: #00264B !important;
 }
