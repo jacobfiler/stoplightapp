@@ -1,21 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-    .status-red { background-color: #ffcccc; }
-    .status-yellow { background-color: #ffffcc; }
-    .status-green { background-color: #ccffcc; }
-    .status-blue { background-color: #cceeff; }
-    .status-black { background-color: #cccccc; }
-    .status-null { background-color: #f2f2f2; }
-    .header-row { background-color: #343a40; color: #ffffff; }
-</style>
-
 <h2 class="fw-bold pb-3">All Reforms</h2>
 
 <table id="myTable" class="table table-striped" style="width:100%">
-    <thead>
-        <tr>
+    <thead style="background-color: #00264B;">
+        <tr class="header-row">
             <th>SLC ID</th>
             <th>Reform Name</th>
             <th>Reform Area</th>
