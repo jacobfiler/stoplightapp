@@ -19,6 +19,9 @@
             <th>SLC ID</th>
             <th>Reform Name</th>
             <th>Reform Area</th>
+            <th>Sources</th>
+            <th>Additional Notes</th>
+            <th>Last Updated</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -28,6 +31,13 @@
             <td><a href="{% url 'reform_detail' slcid=reform_status.reform.slcid %}">{{ reform_status.reform.slcid }}</a></td>
             <td>{{ reform_status.reform.name }}</td>
             <td>{{ reform_status.reform.reform_area.name }}</td>
+            <td>
+                {% for source in reform_status.sources.all %}
+                {{ source.source_type.name }}: <a href="{{ source.url }}" target="_blank">{{ source.url }}</a><br>
+                {% endfor %}
+            </td>
+            <td>{{ reform_status.additional_notes }}</td>
+            <td>{{ reform_status.last_updated }}</td>
             <td class="{{ reform_status.get_status_display|lower }}">{{ reform_status.get_status_display }}</td>
         </tr>
         {% endfor %}
