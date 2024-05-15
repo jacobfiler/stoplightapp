@@ -5,6 +5,9 @@ body {
 .red { background-color: #D12123 !important; }
 .yellow { background-color: #F9C213 !important}
 .green { background-color: #9DBF2B !important}
+.blue { background-color: #cceeff; }
+.null { background-color: #f2f2f2; }
+.black { background-color: #cccccc; }
 
 .navbar { 
     color: white;
@@ -30,4 +33,10 @@ body {
 }
 .header-bg {
     background-color: #00264B !important;
+}
+
+
+table#myTable thead th {
+    background-color: #00264B; /* Your desired background color */
+    color: white; /* Your desired text color */
 }
