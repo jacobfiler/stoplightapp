@@ -32,7 +32,7 @@ class SourceType(models.Model):
 class Source(models.Model):
     reform_status = models.ForeignKey('ReformStatus', on_delete=models.CASCADE, related_name='sources')
     source_type = models.ForeignKey(SourceType, on_delete=models.CASCADE)
-    url = models.URLField()
+    url = models.URLField(max_length=500)
 
     def __str__(self):
         return f"{self.source_type.name} - {self.url}"
