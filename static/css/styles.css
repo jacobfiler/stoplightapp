@@ -47,3 +47,14 @@ table#myTable thead th {
     background-color: #00264B; /* Your desired background color */
     color: white; /* Your desired text color */
 }
+
+table.table td {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Optionally, you can set max width for specific columns */
+table.table td:nth-child(4),  /* Sources column */
+table.table td:nth-child(5) { /* Additional Notes column */
+    max-width: 300px;
+}

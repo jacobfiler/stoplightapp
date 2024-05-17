@@ -1,18 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-    .red { background-color: #D12123; }
-    .yellow { background-color: #F9C213; }
-    .green { background-color: #9DBF2B; }
-    .blue { background-color: #cceeff; }
-    .black { background-color: #cccccc; }
-    .null { background-color: #f2f2f2; }
-    .header-row { background-color: #343a40; color: #ffffff; }
-</style>
-
 <h2 class="fw-bold pb-3">Reform Statuses for {{ state.name }}</h2>
-
 <table id="myTable" class="table table-striped">
     <thead>
         <tr class="header-row">
@@ -32,11 +21,15 @@
             <td>{{ reform_status.reform.name }}</td>
             <td>{{ reform_status.reform.reform_area.name }}</td>
             <td>
-                {% for source in reform_status.sources.all %}
-                {{ source.source_type.name }}: <a href="{{ source.url }}" target="_blank">{{ source.url }}</a><br>
-                {% endfor %}
+                {% if reform_status.sources.exists %}
+                    {% for source in reform_status.sources.all %}
+                    <div>Source {{ forloop.counter }}: <a href="{{ source.url }}" target="_blank">{{ source.source_type.name }}</a></div>
+                    {% endfor %}
+                {% else %}
+                    No Sources Provided
+                {% endif %}
             </td>
-            <td>{{ reform_status.additional_notes }}</td>
+            <td>{{ reform_status.additional_notes|default:"No Additional Notes Provided"}}</td>
             <td>{{ reform_status.last_updated }}</td>
             <td class="{{ reform_status.get_status_display|lower }}">{{ reform_status.get_status_display }}</td>
         </tr>
