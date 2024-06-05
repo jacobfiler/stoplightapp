@@ -35,7 +35,22 @@ def StateReforms(request, state_name):
 @login_required
 def reform_detail(request, slcid):
     reform = get_object_or_404(Reform, slcid=slcid)
+    statuses = ReformStatus.objects.filter(reform=reform)
+
+    status_details = {
+        'green': statuses.filter(status=ReformStatus.StatusChoices.GREEN),
+        'red': statuses.filter(status=ReformStatus.StatusChoices.RED),
+        'yellow': statuses.filter(status=ReformStatus.StatusChoices.YELLOW),
+        'blue': statuses.filter(status=ReformStatus.StatusChoices.BLUE),
+        'black': statuses.filter(status=ReformStatus.StatusChoices.BLACK),
+        'null': statuses.filter(status=ReformStatus.StatusChoices.NULL)
+    }
+
+    status_counts = {key: value.count() for key, value in status_details.items()}
+
     context = {
         'reform': reform,
+        'status_counts': status_counts,
+        'status_details': status_details,
     }
     return render(request, 'stoplight_app/reform_detail.html', context)

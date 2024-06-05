@@ -16,6 +16,66 @@
                     <p class="card-text"><strong>Description:</strong> {{ reform.description|default:"No Description Provided" }}</p>
                     <p class="card-text"><strong>Criteria:</strong> {{ reform.criteria|default:"No Criteria Provided" }}</p>
                     <p class="card-text"><strong>Reform Area:</strong> {{ reform.reform_area.name }}</p>
+                    <p class="card-text"><strong>Last Updated:</strong> {{ reform.last_updated }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Reform Status Summary
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="badge bg-success">Green:</span> {{ status_counts.green }}
+                            <ul>
+                                {% for status in status_details.green %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge bg-danger">Red:</span> {{ status_counts.red }}
+                            <ul>
+                                {% for status in status_details.red %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge bg-warning">Yellow:</span> {{ status_counts.yellow }}
+                            <ul>
+                                {% for status in status_details.yellow %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge bg-info">Blue:</span> {{ status_counts.blue }}
+                            <ul>
+                                {% for status in status_details.blue %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge bg-secondary">Black:</span> {{ status_counts.black }}
+                            <ul>
+                                {% for status in status_details.black %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge bg-light text-dark">Null:</span> {{ status_counts.null }}
+                            <ul>
+                                {% for status in status_details.null %}
+                                    <li>{{ status.state.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

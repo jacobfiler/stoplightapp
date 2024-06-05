@@ -20,14 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nohuma1^3^gte_o8yea_&t$(zrotd-j#j=dtv$vb18c$)q%czn'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['104.131.75.71', 'octopus-app-7kkc5.ondigitalocean.app', 'localhost']
+ALLOWED_HOSTS = ['104.131.75.71', 'octopus-app-7kkc5.ondigitalocean.app', 'localhost', 'stoplight.thefga.org']
 
-CSRF_TRUSTED_ORIGINS = ['https://octopus-app-7kkc5.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = ['https://stoplight.thefga.org']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
