@@ -23,13 +23,16 @@
             <td>
                 {% if reform_status.sources.exists %}
                     {% for source in reform_status.sources.all %}
-                    <div>Source {{ forloop.counter }}: <a href="{{ source.url }}" target="_blank">{{ source.source_type.name }}</a></div>
+                    <div>
+                        Source {{ forloop.counter }}: 
+                        <a href="{{ source.url }}" data-url="{{ source.url }}" target="_blank">{{ source.url }}</a>
+                    </div>
                     {% endfor %}
                 {% else %}
                     No Sources Provided
                 {% endif %}
             </td>
-            <td>{{ reform_status.additional_notes|default:"No Additional Notes Provided"}}</td>
+            <td>{{ reform_status.additional_notes|default:"No Additional Notes Provided" }}</td>
             <td>{{ reform_status.last_updated }}</td>
             <td class="{{ reform_status.get_status_display|lower }}">{{ reform_status.get_status_display }}</td>
         </tr>

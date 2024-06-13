@@ -31,7 +31,7 @@
                             <span class="badge bg-success">Green:</span> {{ status_counts.green }}
                             <ul>
                                 {% for status in status_details.green %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -39,7 +39,7 @@
                             <span class="badge bg-danger">Red:</span> {{ status_counts.red }}
                             <ul>
                                 {% for status in status_details.red %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -47,7 +47,7 @@
                             <span class="badge bg-warning">Yellow:</span> {{ status_counts.yellow }}
                             <ul>
                                 {% for status in status_details.yellow %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -55,7 +55,7 @@
                             <span class="badge bg-info">Blue:</span> {{ status_counts.blue }}
                             <ul>
                                 {% for status in status_details.blue %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -63,7 +63,7 @@
                             <span class="badge bg-secondary">Black:</span> {{ status_counts.black }}
                             <ul>
                                 {% for status in status_details.black %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
@@ -71,7 +71,7 @@
                             <span class="badge bg-light text-dark">Null:</span> {{ status_counts.null }}
                             <ul>
                                 {% for status in status_details.null %}
-                                    <li>{{ status.state.name }}</li>
+                                    <li><a href="{% url 'state_reforms' state_name=status.state.name %}">{{ status.state.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>
