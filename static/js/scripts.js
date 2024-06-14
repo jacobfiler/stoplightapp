@@ -2,9 +2,9 @@ $(document).ready(function() {
     $('#myTable').DataTable({
         pageLength: 25,
         responsive: true,
-        layout: {
-            topStart: 'searchBuilder'
-        }
+        // layout: {
+        //     topStart: 'searchBuilder'
+        // }
     });
 });
 
@@ -16,9 +16,9 @@ $(document).ready(function() {
             { responsivePriority: 1, targets: -1 }, // Always show the status column
             { responsivePriority: 2, targets: 0 },  // SLC ID
         ],
-        layout: {
-            topStart: 'searchBuilder'
-        }
+        // layout: {
+        //     topStart: 'searchBuilder'
+        // }
     });
 });
 
