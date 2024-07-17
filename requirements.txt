@@ -1,9 +1,9 @@
-asgiref==3.7.2
-Django==5.0.1
-sqlparse==0.4.4
-gunicorn>=20.0.4
-python-dotenv==1.0.1
-mysqlclient==2.2.4
+asgiref
+Django
+sqlparse
+gunicorn
+python-dotenv
+mysqlclient
 whitenoise
 djangorestframework
 django-extensions

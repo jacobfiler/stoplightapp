@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['104.131.75.71', 'octopus-app-7kkc5.ondigitalocean.app', 'localhost', 'stoplight.thefga.org']
+ALLOWED_HOSTS = ['104.131.75.71', 'octopus-app-7kkc5.ondigitalocean.app', 'seashell-app-6nm8u.ondigitalocean.app', 'localhost', 'stoplight.thefga.org']
 
 CSRF_TRUSTED_ORIGINS = ['https://stoplight.thefga.org']
 
