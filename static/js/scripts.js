@@ -3,7 +3,11 @@ $(document).ready(function() {
         pageLength: 25,
         responsive: true,
         layout: {
-            topStart: 'searchBuilder'
+            topStart: {
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            }
         }
     });
 });
@@ -17,7 +21,11 @@ $(document).ready(function() {
             { responsivePriority: 2, targets: 0 },  // SLC ID
         ],
         layout: {
-            topStart: 'searchBuilder'
+            topStart: {
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            }
         }
     });
 });
