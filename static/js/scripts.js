@@ -5,7 +5,7 @@ $(document).ready(function() {
         layout: {
             topStart: {
                 buttons: [
-                    'copy', 'excel', 'pdf'
+                    'copy', 'excel', 'print'
                 ]
             }
         }
@@ -23,7 +23,7 @@ $(document).ready(function() {
         layout: {
             topStart: {
                 buttons: [
-                    'copy', 'excel', 'pdf'
+                    'copy', 'excel', 'print'
                 ]
             }
         }
