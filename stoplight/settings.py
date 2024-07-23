@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'django_auth_adfs',
+    'simple_history',
 ]
 
 MIDDLEWARE = [
