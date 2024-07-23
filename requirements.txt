@@ -8,3 +8,4 @@ whitenoise
 djangorestframework
 django-extensions
 django-auth-adfs
+django-simple-history
