@@ -9,11 +9,18 @@ from rest_framework.decorators import api_view
 from .serializers import ReformSerializer, StateSerializer, ReformStatusSerializer, ReformAreaSerializer
 from django.contrib.auth.decorators import login_required
 
+@login_required
+def home_default(request):
+    return home(request, data_version='new')
 
 @login_required
-def home(request):
-    # Fetch all Reform objects
-    reforms = Reform.objects.all().order_by('slcid', 'name')
+def home(request, data_version='new'):
+    # Fetch all Reform objects based on data version
+    if data_version == 'old':
+        reforms = Reform.objects.filter(version=1).order_by('slcid', 'name')
+    else:
+        reforms = Reform.objects.filter(version=2).order_by('slcid', 'name')
+        
     context = {
         'reforms': reforms,
     }

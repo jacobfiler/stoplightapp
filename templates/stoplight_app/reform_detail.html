@@ -16,6 +16,9 @@
                     <p class="card-text"><strong>Description:</strong> {{ reform.description|default:"No Description Provided" }}</p>
                     <p class="card-text"><strong>Criteria:</strong> {{ reform.criteria|default:"No Criteria Provided" }}</p>
                     <p class="card-text"><strong>Reform Area:</strong> {{ reform.reform_area.name }}</p>
+                    {% if reform.version == 2 %}
+                    <p class="card-text"><strong>Policy Specialist:</strong> {{ reform.policy_specialist }}</p>
+                    {% endif %}
                     <p class="card-text"><strong>Last Updated:</strong> {{ reform.last_updated }}</p>
                 </div>
             </div>

@@ -69,55 +69,14 @@ table.table td:nth-child(5) { /* Additional Notes column */
 }
 
 
-/* Searchbuilder */
-/* General styling for SearchBuilder */
-.dtsb-searchBuilder {
-    font-family: Open Sans, sans-serif;
-}
-
-/* Styling for the SearchBuilder container */
-.dtsb-searchBuilder {
-    border: 1px solid #cccccc; /* Matching the black background color */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Styling for the SearchBuilder title row */
-.dtsb-titleRow {
-    background-color: #00264B; /* Matching the header-bg background color */
-    color: white; /* Ensuring the title text is white */
-    padding: 5px;
-    border-radius: 3px;
-}
-
-/* Styling for SearchBuilder logic dropdown */
-.dtsb-searchBuilder .dtsb-logic {
-
-    border: 1px solid #00264B; /* Matching the header-bg background color */
-    color: #00264B; /* Matching the header-bg text color */
-}
-
-div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-data {
-    border-color: #00264B;
-}
-
-div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-condition {
-    border-color: #00264B;
-}
-
-div.dtsb-searchBuilder div.dtsb-group div.dtsb-criteria select.dtsb-value {
-    border-color: #00264B;
-}
-
-div.dtsb-searchBuilder div.dtsb-titleRow button.dtsb-clearAll {
-    color: #00264B;
-    background-color: white;
-}
-
 .btn.btn-secondary.buttons-html5 {
     background-color:#0093d0;
 }
 
 .btn.btn-secondary.buttons-print {
     background-color:#0093d0;
+}
+
+.dt-buttons.btn-group.flex-wrap .btn.btn-secondary {
+    background-color: #0093d0;
 }

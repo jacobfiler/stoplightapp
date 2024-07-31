@@ -8,8 +8,8 @@ class SourceInline(admin.TabularInline):
 @admin.register(ReformStatus)
 class ReformStatusAdmin(admin.ModelAdmin):
     search_fields = ['reform__name', 'state__name']
-    list_filter = ['status', 'state']
-    list_display = ['reform', 'state', 'status', 'last_updated']
+    list_display = ['reform', 'state', 'status']  # Removed 'last_updated'
+    list_filter = ['status', 'state']  # Removed 'last_updated'
     list_select_related = ['reform', 'state']
     autocomplete_fields = ['reform', 'state']
     inlines = [SourceInline]
@@ -42,4 +42,3 @@ class SourceAdmin(admin.ModelAdmin):
 class ReformAreaAdmin(admin.ModelAdmin):
     search_fields = ['name']
     autocomplete_fields = []
-

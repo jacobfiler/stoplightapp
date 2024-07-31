@@ -2,10 +2,15 @@ $(document).ready(function() {
     $('#myTable').DataTable({
         pageLength: 25,
         responsive: true,
+        language: {
+            searchBuilder: {
+                button: 'Query Builder'
+            }
+        },
         layout: {
             topStart: {
                 buttons: [
-                    'copy', 'excel', 'print'
+                    'copy', 'excel', 'print', 'searchBuilder',
                 ]
             }
         }
@@ -20,10 +25,15 @@ $(document).ready(function() {
             { responsivePriority: 1, targets: -1 }, // Always show the status column
             { responsivePriority: 2, targets: 0 },  // SLC ID
         ],
+        language: {
+            searchBuilder: {
+                button: 'Query Builder'
+            }
+        },
         layout: {
             topStart: {
                 buttons: [
-                    'copy', 'excel', 'print'
+                    'copy', 'excel', 'print', 'searchBuilder',
                 ]
             }
         }

@@ -1,5 +1,5 @@
 from django.db import models
-from simple_history.models import HistoricalRecords 
+from simple_history.models import HistoricalRecords
 
 class ReformArea(models.Model):
     name = models.CharField(max_length=100)
@@ -8,12 +8,19 @@ class ReformArea(models.Model):
         return self.name
 
 class Reform(models.Model):
+    VERSION_CHOICES = [
+        (1, 'Version 1'),
+        (2, 'Version 2')
+    ]
+
+    slcid = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    slcid = models.CharField(max_length=10, primary_key=True)
-    criteria = models.TextField(blank=True, null=True)
     reform_area = models.ForeignKey(ReformArea, on_delete=models.CASCADE, related_name='reforms')
+    criteria = models.TextField(blank=True, null=True)
     last_updated = models.DateTimeField(auto_now=True)
+    version = models.PositiveSmallIntegerField(choices=VERSION_CHOICES, default=2)  # Version field
+    policy_specialist = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} ({self.slcid})"
@@ -55,10 +62,11 @@ class ReformStatus(models.Model):
         default=StatusChoices.NULL,
         blank=True, null=True
     )
-    last_updated = models.DateTimeField(auto_now=True)
     additional_notes = models.TextField(blank=True, null=True)
-    win = models.BooleanField(default=False)  # Add this field
-    history = HistoricalRecords()  # Add this line
+    win = models.BooleanField(default=False)
+    history = HistoricalRecords()
+    notes = models.TextField(blank=True, null=True)
+    citation = models.TextField(blank=True, null=True)  # Citation field
 
     def __str__(self):
         return f"{self.reform.name} in {self.state.name} - {self.get_status_display()}"

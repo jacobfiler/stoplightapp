@@ -17,11 +17,14 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the current directory contents into the container at /app/
-COPY . /app/
+# Copy only requirements first for better caching
+COPY requirements.txt /app/
 
 # Install any needed packages specified in requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt 
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . /app/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
@@ -30,4 +33,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Define the command to run your app using gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "stoplight.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "stoplight.wsgi:application"]
