@@ -7,12 +7,6 @@ class ReformArea(models.Model):
     def __str__(self):
         return self.name
 
-class PolicySpecialist(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
 class Reform(models.Model):
     VERSION_CHOICES = [
         (1, 'Version 1'),
