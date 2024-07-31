@@ -37,7 +37,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light header-bg">
         <div class="container">
           <!-- Logo on the left -->
-          <a class="navbar-brand" href="{% url 'home' %}">
+          <a class="navbar-brand" href="{% url 'home_default' %}">
             <img
               src="{% static 'img/FGA_stoplight_transparent.png' %}"
               alt="Logo"
@@ -64,7 +64,7 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="{% url 'home_default' %}">Home</a>
               </li>
               {% if request.user.is_authenticated and request.user.is_staff %}
               <li class="nav-item">
