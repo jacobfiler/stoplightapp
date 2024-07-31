@@ -18,7 +18,7 @@
         {% for reform_status in reform_statuses %}
         <tr>
             <td>
-                <a href="{% url 'reform_detail' slcid=reform_status.reform.slcid %}">{{ reform_status.reform.slcid }}</a>
+                <a href="{% url 'state_reform_detail' state_name=state.name slcid=reform_status.reform.slcid %}">{{ reform_status.reform.slcid }}</a>
             </td>
             <td>
                 {{ reform_status.reform.name }}
