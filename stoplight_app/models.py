@@ -19,7 +19,7 @@ class Reform(models.Model):
     reform_area = models.ForeignKey(ReformArea, on_delete=models.CASCADE, related_name='reforms')
     criteria = models.TextField(blank=True, null=True)
     last_updated = models.DateTimeField(auto_now=True)
-    version = models.PositiveSmallIntegerField(choices=VERSION_CHOICES, default=2)  # Version field
+    version = models.PositiveSmallIntegerField(choices=VERSION_CHOICES, default=2)
     policy_specialist = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -64,9 +64,9 @@ class ReformStatus(models.Model):
     )
     additional_notes = models.TextField(blank=True, null=True)
     win = models.BooleanField(default=False)
-    history = HistoricalRecords()
+    citation = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
-    citation = models.TextField(blank=True, null=True)  # Citation field
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.reform.name} in {self.state.name} - {self.get_status_display()}"
