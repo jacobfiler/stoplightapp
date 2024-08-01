@@ -8,7 +8,7 @@ class SourceInline(admin.TabularInline):
 @admin.register(ReformStatus)
 class ReformStatusAdmin(admin.ModelAdmin):
     search_fields = ['reform__name', 'state__name']
-    list_display = ['reform', 'state', 'status']  # Removed 'last_updated'
+    list_display = ('id', 'reform', 'state', 'status', 'citation', 'notes')
     list_filter = ['status', 'state']  # Removed 'last_updated'
     list_select_related = ['reform', 'state']
     autocomplete_fields = ['reform', 'state']
