@@ -1,44 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reform Detail for {{ state.name }}</title>
-    <style>
-        .status-R { background-color: red; }
-        .status-Y { background-color: yellow; }
-        .status-G { background-color: green; }
-        .status-B { background-color: blue; }
-        .status-K { background-color: black; color: white; }
-        .status-N { background-color: grey; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-    </style>
-</head>
-<body>
-    <h1>Reform Detail for {{ state.name }}</h1>
-    <h2>{{ reform_status.reform.name }} ({{ reform_status.reform.slcid }})</h2>
-    <p><strong>Reform Area:</strong> {{ reform_status.reform.reform_area.name }}</p>
-    <p><strong>Description:</strong> {{ reform_status.reform.description|default:"No Description Provided" }}</p>
-    <p><strong>Criteria:</strong> {{ reform_status.reform.criteria|default:"No Criteria Provided" }}</p>
-    <p><strong>Additional Notes:</strong> {{ reform_status.additional_notes|default:"No Additional Notes Provided" }}</p>
-    <p><strong>Last Updated:</strong> {{ reform_status.last_updated }}</p>
-    <p><strong>Status:</strong> {{ reform_status.get_status_display }}</p>
-    <p>
-        <strong>Sources:</strong>
-        {% if reform_status.sources.exists %}
-            <ul>
-                {% for source in reform_status.sources.all %}
-                <li><a href="{{ source.url }}" target="_blank">{{ source.url }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            No Sources Provided
-        {% endif %}
-    </p>
-    {% if reform_status.win %}
-        <p><span class="badge bg-success">Win</span></p>
-    {% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}State Reform Details{% endblock %}
+
+{% block content %}
+<div class="mt-4">
+    <div class="row">
+        <h2>{{ reform_status.reform.name }} in {{ reform_status.state.name }}</h2>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Reform Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-decoration-underline"><strong>{{ reform_status.reform.slcid }}</strong></h5>
+                    <p class="card-text"><strong>Description:</strong> {{ reform_status.reform.description|default:"No Description Provided" }}</p>
+                    <p class="card-text"><strong>Criteria:</strong> {{ reform_status.reform.criteria|default:"No Criteria Provided" }}</p>
+                    <p class="card-text"><strong>Reform Area:</strong> {{ reform_status.reform.reform_area.name }}</p>
+                    {% if reform_status.reform.version == 2 %}
+                    <p class="card-text"><strong>Policy Specialist:</strong> {{ reform_status.reform.policy_specialist }}</p>
+                    {% endif %}
+                    <p class="card-text"><strong>Last Updated:</strong> {{ reform_status.reform.last_updated }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-4">
+            <div class="card">
+                <div class="card-header">
+                    State Reform Status
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Status:</strong> {{ reform_status.get_status_display }}</p>
+                    <p class="card-text"><strong>Additional Notes:</strong> {{ reform_status.additional_notes|default:"No Additional Notes Provided" }}</p>
+                    <p class="card-text"><strong>Citation:</strong> {{ reform_status.citation|default:"No Citation Provided" }}</p>
+                    <p class="card-text"><strong>Notes:</strong> {{ reform_status.notes|default:"No Notes Provided" }}</p>
+                    <p class="card-text"><strong>Win:</strong> {{ reform_status.win|yesno:"Yes,No" }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Sources
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for source in sources %}
+                        <li class="list-group-item">
+                            <strong>{{ source.source_type.name }}:</strong> <a href="{{ source.url }}">{{ source.url }}</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No sources available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

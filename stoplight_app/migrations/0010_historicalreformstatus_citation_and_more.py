@@ -10,14 +10,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='reformstatus',
-            name='citation',
-            field=models.TextField(blank=True, null=True),
-        ),
-        migrations.AddField(
-            model_name='reformstatus',
-            name='notes',
-            field=models.TextField(blank=True, null=True),
-        ),
+        # migrations.AddField(
+        #     model_name='reformstatus',
+        #     name='citation',
+        #     field=models.TextField(blank=True, null=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='reformstatus',
+        #     name='notes',
+        #     field=models.TextField(blank=True, null=True),
+        # ),
     ]

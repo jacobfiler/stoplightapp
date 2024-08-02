@@ -67,6 +67,7 @@ class ReformStatus(models.Model):
     citation = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     history = HistoricalRecords()
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.reform.name} in {self.state.name} - {self.get_status_display()}"

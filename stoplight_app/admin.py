@@ -14,6 +14,11 @@ class ReformStatusAdmin(admin.ModelAdmin):
     autocomplete_fields = ['reform', 'state']
     inlines = [SourceInline]
 
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.last_updated = timezone.now()
+        super().save_model(request, obj, form, change)
+
 @admin.register(Reform)
 class ReformAdmin(admin.ModelAdmin):
     search_fields = ['name']
