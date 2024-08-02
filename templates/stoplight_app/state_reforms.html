@@ -8,7 +8,7 @@
             <th data-priority="2">SLC ID</th>
             <th>Reform Name</th>
             <th>Reform Area</th>
-            <th>Sources</th>
+            <th>Citation</th>
             <th>Additional Notes</th>
             <th>Last Updated</th>
             <th data-priority="1">Status</th>
@@ -18,7 +18,8 @@
         {% for reform_status in reform_statuses %}
         <tr>
             <td>
-                <a href="{% url 'reform_detail' slcid=reform_status.reform.slcid %}">{{ reform_status.reform.slcid }}</a>
+                <a href="{% url 'state_reform_detail' state_name=state.name slcid=reform_status.reform.slcid %}">{{ reform_status.reform.slcid }}</a>
+                <p><em>(Additional Details)</em></p>
             </td>
             <td>
                 {{ reform_status.reform.name }}
@@ -30,16 +31,7 @@
             </td>
             <td>{{ reform_status.reform.reform_area.name }}</td>
             <td>
-                {% if reform_status.sources.exists %}
-                    {% for source in reform_status.sources.all %}
-                    <div>
-                        Source {{ forloop.counter }}: 
-                        <a href="{{ source.url }}" data-url="{{ source.url }}" target="_blank">{{ source.url }}</a>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    No Sources Provided
-                {% endif %}
+                {{ reform_status.citation|default:"No Citation Provided" }}
             </td>
             <td>{{ reform_status.additional_notes|default:"No Additional Notes Provided" }}</td>
             <td>{{ reform_status.last_updated }}</td>

@@ -8,11 +8,16 @@ class SourceInline(admin.TabularInline):
 @admin.register(ReformStatus)
 class ReformStatusAdmin(admin.ModelAdmin):
     search_fields = ['reform__name', 'state__name']
-    list_display = ['reform', 'state', 'status']  # Removed 'last_updated'
+    list_display = ('id', 'reform', 'state', 'status', 'citation', 'notes')
     list_filter = ['status', 'state']  # Removed 'last_updated'
     list_select_related = ['reform', 'state']
     autocomplete_fields = ['reform', 'state']
     inlines = [SourceInline]
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.last_updated = timezone.now()
+        super().save_model(request, obj, form, change)
 
 @admin.register(Reform)
 class ReformAdmin(admin.ModelAdmin):

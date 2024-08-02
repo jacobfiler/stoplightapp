@@ -6,6 +6,7 @@ urlpatterns = [
     path('<str:data_version>/', views.home, name='home'),
     path('states/<str:state_name>/', views.StateReforms, name='state_reforms'),
     path('reform_detail/<str:slcid>/', views.reform_detail, name='reform_detail'),
+    path('states/<str:state_name>/<str:slcid>/', views.state_reform_detail, name='state_reform_detail'),
     path('oauth2/', include('django_auth_adfs.urls')),
 
 ]
