@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from .models import Reform, State, ReformStatus, ReformArea
+from .models import Reform, State, ReformStatus, ReformArea, Source
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Reform
 from rest_framework import status
@@ -61,3 +61,16 @@ def reform_detail(request, slcid):
         'status_details': status_details,
     }
     return render(request, 'stoplight_app/reform_detail.html', context)
+
+@login_required
+def state_reform_detail(request, state_name, slcid):
+    state = get_object_or_404(State, name=state_name)
+    reform = get_object_or_404(Reform, slcid=slcid)
+    reform_status = get_object_or_404(ReformStatus, reform=reform, state=state)
+    sources = Source.objects.filter(reform_status=reform_status)
+
+    context = {
+        'reform_status': reform_status,
+        'sources': sources,
+    }
+    return render(request, 'stoplight_app/state_reform_detail.html', context)
